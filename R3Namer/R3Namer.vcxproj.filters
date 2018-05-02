@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Duktape">
+      <UniqueIdentifier>{57c64183-585c-421f-b9b4-123b9207d1dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Duktape\duktape_warpper">
+      <UniqueIdentifier>{d593ae2f-1673-4405-a9cc-a38f10b2993e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Duktape\duktape">
+      <UniqueIdentifier>{3c63c1e0-8c32-48a9-9445-abc6bcb02331}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Iconv">
+      <UniqueIdentifier>{924a85e7-2c1d-462b-9d8e-d89caef84d09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CustomListCtrl">
+      <UniqueIdentifier>{9bee1b64-059d-4685-b7ff-25c21ee1935f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Jsoncpp">
+      <UniqueIdentifier>{c7edca9e-c5f4-4718-b618-36e54c93d5fc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="R3Namer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="R3NamerDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\duktape_warpper\ffduktape.h">
+      <Filter>Duktape\duktape_warpper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\duktape2.1.1\duk_config.h">
+      <Filter>Duktape\duktape</Filter>
+    </ClInclude>
+    <ClInclude Include="..\duktape2.1.1\duktape.h">
+      <Filter>Duktape\duktape</Filter>
+    </ClInclude>
+    <ClInclude Include="..\iconv\Convertor.h">
+      <Filter>Iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\iconv\iconv.h">
+      <Filter>Iconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CustomListCtrl\ListCtrlCustom.h">
+      <Filter>CustomListCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CustomListCtrl\MyButton.h">
+      <Filter>CustomListCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CustomListCtrl\MyRadioButton.h">
+      <Filter>CustomListCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgRuleItem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgFilePreview.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgRuleParam.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jsoncpp\src\json_tool.h">
+      <Filter>Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgLog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgEditRename.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="R3Namer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="R3NamerDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\duktape2.1.1\duktape.c">
+      <Filter>Duktape\duktape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\iconv\Convertor.cpp">
+      <Filter>Iconv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\iconv\win_iconv.c">
+      <Filter>Iconv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CustomListCtrl\ListCtrlCustom.cpp">
+      <Filter>CustomListCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CustomListCtrl\MyButton.cpp">
+      <Filter>CustomListCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CustomListCtrl\MyRadioButton.cpp">
+      <Filter>CustomListCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgRuleItem.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgFilePreview.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgRuleParam.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jsoncpp\src\json_reader.cpp">
+      <Filter>Jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jsoncpp\src\json_value.cpp">
+      <Filter>Jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jsoncpp\src\json_writer.cpp">
+      <Filter>Jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgLog.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgEditRename.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="R3Namer.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\R3Namer.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="..\duktape2.1.1\duk_source_meta.json">
+      <Filter>Duktape\duktape</Filter>
+    </None>
+    <None Include="..\jsoncpp\src\json_valueiterator.inl">
+      <Filter>Jsoncpp</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\R3Namer.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
