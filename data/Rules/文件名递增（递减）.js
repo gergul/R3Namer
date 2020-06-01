@@ -30,7 +30,7 @@ RN.RULES.push(function(filePath, isFile, params)
 	
 	fileName = fileName.format(values);
 		
-	var newFilePath = RN.GetPath(filePath) + "\\" + fileName;
+	var newFilePath = RN.GetDir(filePath) + fileName;
 	
 	var fileExt = RN.GetFileExtension(filePath);
 	if (fileExt != "")

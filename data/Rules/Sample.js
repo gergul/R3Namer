@@ -14,15 +14,15 @@ RN.PARAMS.push({
 	"AString" 				: "这是一个英文字符串",
 	"AString_DESC"			: "这是一个描述",
 	
-	"_T_HasPrinted"			: false,
-	"_T_HasPrinted_DESC"	: "这是一个用于上下文传递数据的临时变量,变量名使用_T_开头的变量即为临时变量。临时变量不会出现在属性列表中"
+	"__HasPrinted"			: false,
+	"__HasPrinted_DESC"		: "这是一个用于上下文传递数据的内部变量,变量名使用“__”开头的变量即为内部变量。内部变量不会出现在属性列表中"
 });
 
 RN.RULES.push(function(filePath, isFile, params)
 {
-	if (!params['_T_HasPrinted'])
+	if (!params['__HasPrinted'])
 	{//这里只会进入一次
-		params['_T_HasPrinted'] = true;//这个更改会影响且只会影响本次会话
+		params['__HasPrinted'] = true;//这个更改会影响且只会影响本次会话
 		
 		print(params['字符串参数'] + '\n');
 		print(params['整数参数'] + '\n');
@@ -31,7 +31,7 @@ RN.RULES.push(function(filePath, isFile, params)
 		print(params['AString'] + '\n');
 		
 		//以下是文件路径的相关辅助函数，可以在根目录的init.js文件中被找到
-		var fileDir = RN.GetPath(filePath);//获得文件路径
+		var fileDir = RN.GetDir(filePath);//获得文件路径
 		var fileName = RN.GetFileName(filePath);//获得文件名或文件夹名
 		var fileNameNoEx = RN.GetFileNameWithoutEx(filePath);//获得文件名或文件夹名(不带后缀)
 		var fileEx = RN.GetFileExtension(filePath);//获得文件后缀

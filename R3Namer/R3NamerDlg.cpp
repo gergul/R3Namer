@@ -727,6 +727,12 @@ void CR3NamerDlg::OnBnClickedBtnRename()
 
 	for (int i = 0; i < m_ctrlPreview.GetItemCount(); ++i)
 	{
+		if (TRUE != m_ctrlPreview.GetCheck(i))
+		{
+			m_ctrlProgress.StepIt();
+			continue;//Ìø¹ý·Ç¹´Ñ¡
+		}
+
 		CString fileFrom = m_ctrlPreview.GetText(i, 1);
 		CString fileTo = m_ctrlPreview.GetText(i, 2);
 		if (fileFrom.IsEmpty() || fileTo.IsEmpty())

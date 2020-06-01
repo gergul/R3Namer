@@ -29,7 +29,7 @@ RN.RULES.push(function(filePath, isFile, params)
 	else
 		newFileName = fileName;
 
-	var newFilePath = RN.GetPath(filePath) + "\\" + newFileName;
+	var newFilePath = RN.GetDir(filePath) + newFileName;
 	
 	return newFilePath;
 });

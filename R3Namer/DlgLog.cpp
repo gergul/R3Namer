@@ -66,9 +66,6 @@ void CDlgLog::jumpLast()
 	int nLength = m_sLogText.GetLength();
 	m_ctrlLogText.SetSel(nLength, nLength, FALSE);
 	m_ctrlLogText.SetFocus();
-	/*CEdit m_Edit;
-int cnt = m_Edit.GetLineCount();
-m_Edit.LineScroll(cnt, 0);*/
 }
 
 void CDlgLog::DoDataExchange(CDataExchange* pDX)

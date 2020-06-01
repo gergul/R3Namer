@@ -77,11 +77,11 @@ RN.str = function(o)
 	return JSON.stringify(o);
 }
 
-//跟据文件路径获得路径
-RN.GetPath = function(filePath)
+//跟据文件路径获得文件夹
+RN.GetDir = function(filePath)
 {
 	if (filePath[filePath.length-1] == '\\' || filePath[filePath.length-1] == '/')
-		filePath = filePath.substr(0, filePath.length-1);
+		return filePath;
 	
 	var split1 = filePath.lastIndexOf('/');
 	var split2 = filePath.lastIndexOf('\\');
@@ -89,7 +89,7 @@ RN.GetPath = function(filePath)
 	if (-1 == split)
 		return "";
 	
-	return filePath.substr(0, split);
+	return filePath.substr(0, split + 1);
 }
 
 //跟据文件路径获得文件名或文件夹名

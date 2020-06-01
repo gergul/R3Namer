@@ -10,6 +10,7 @@ string
 #include "Convertor.h"
 #include "json\writer.h"
 #include "ffduktape.h"
+#include <direct.h>
 
 // CDlgRuleParam 对话框
 
@@ -64,78 +65,8 @@ BOOL CDlgRuleParam::OnInitDialog()
 	valItem.pszText = TEXT("值");
 	valItem.mask = HDI_TEXT;
 	m_ctrlRuleParams.GetHeaderCtrl().SetItem(1, new HDITEM(valItem));
-
-	/*
-	Json::Reader reader;
-	Json::Value root;
-	if (reader.parse(m_sConfigJson.GetString(), root))
-	{
-		Json::Value::Members keys = root.getMemberNames();
-		for (int i=0; i<keys.size(); ++i)
-		{
-			std::wstring ws;
-			GL::Ansi2WideByte(ws, keys[i].c_str());
-			CString key = ws.c_str();
-
-			//描述字段
-			CString test = key.Mid(key.GetLength() - 5, 5);
-			if (test == TEXT("_DESC"))
-				continue;
-
-			//上下文临时变量
-			BOOL bTemp = FALSE;
-			if (key.Mid(0, 3) == TEXT("_T_"))
-				bTemp = TRUE;
-
-			const Json::Value& kv = root[keys[i]];
-
-			//尝试获得字段的描述
-			CString desc;
-			if (!root[keys[i] + "_DESC"].isNull())
-			{
-				std::wstring ws;
-				GL::Ansi2WideByte(ws, root[keys[i] + "_DESC"].asString().c_str());
-				desc = ws.c_str();
-			}
-
-			//添加属性字段
-			if (kv.isInt())
-			{
-				int val = kv.asInt();
-				CMFCPropertyGridProperty* pKV = new CMFCPropertyGridProperty(key, (_variant_t)val, desc);
-				m_ctrlRuleParams.AddProperty(pKV);
-				pKV->Show(!bTemp);
-			}
-			else if (kv.isDouble())
-			{
-				float val = kv.asDouble();
-				CMFCPropertyGridProperty* pKV = new CMFCPropertyGridProperty(key, (_variant_t)val, desc);
-				m_ctrlRuleParams.AddProperty(pKV);
-				pKV->Show(!bTemp);
-			}
-			else if (kv.isBool())
-			{
-				bool val = kv.asBool();
-				CMFCPropertyGridProperty* pKV = new CMFCPropertyGridProperty(key, (_variant_t)val, desc);
-				m_ctrlRuleParams.AddProperty(pKV);
-				pKV->Show(!bTemp);
-			}
-			else
-			{
-				std::string val = kv.asCString();
-				std::wstring ws;
-				GL::Ansi2WideByte(ws, val.c_str());
-				CMFCPropertyGridProperty* pKV = new CMFCPropertyGridProperty(key, ws.c_str(), desc);
-				m_ctrlRuleParams.AddProperty(pKV);
-				pKV->Show(!bTemp);
-			}
-		}
-	}
-	*/
-
-	//const std::vector< std::pair<std::string, COleVariant> >& kvs = GetJson("config.js");
-
-	//desc map
+		
+	//获得描述字段
 	std::map<CString, CString> mpDesc;
 	for (std::vector< std::pair<std::string, COleVariant> >::const_iterator it = m_configs.cbegin(); it != m_configs.cend(); ++it)
 	{
@@ -144,8 +75,7 @@ BOOL CDlgRuleParam::OnInitDialog()
 		CString key = ws.c_str();
 
 		//非描述字段
-		CString test = key.Mid(key.GetLength() - 5, 5);
-		if (test != TEXT("_DESC"))
+		if (key.GetLength() <= 5 || key.Mid(key.GetLength() - 5, 5) != TEXT("_DESC"))
 			continue;
 
 		mpDesc.insert(std::make_pair(key, V_BSTRT(&(it->second))));
@@ -157,16 +87,16 @@ BOOL CDlgRuleParam::OnInitDialog()
 		std::wstring ws;
 		GL::Ansi2WideByte(ws, it->first.c_str());
 		CString key = ws.c_str();
+		key.Trim();
 
 		//描述字段
-		CString test = key.Mid(key.GetLength() - 5, 5);
-		if (test == TEXT("_DESC"))
+		if (key.GetLength() > 5 && key.Mid(key.GetLength() - 5, 5) == TEXT("_DESC"))
 			continue;
 
-		//上下文临时变量
-		BOOL bTemp = FALSE;
-		if (key.Mid(0, 3) == TEXT("_T_"))
-			bTemp = TRUE;
+		//内部变量不显示在设置窗口上
+		BOOL bInner = FALSE;
+		if (key.GetLength() >= 2 && key.Mid(0, 2) == TEXT("__"))
+			bInner = TRUE;
 
 		//尝试获得字段的描述
 		CString desc = mpDesc[key+TEXT("_DESC")];
@@ -174,7 +104,7 @@ BOOL CDlgRuleParam::OnInitDialog()
 		COleVariant v = it->second;
 		CMFCPropertyGridProperty* pKV = new CMFCPropertyGridProperty(key, v, desc);
 		m_ctrlRuleParams.AddProperty(pKV);
-		pKV->Show(!bTemp);
+		pKV->Show(!bInner);
 	}
 
 	return bRet;
@@ -218,18 +148,22 @@ void CDlgRuleParam::OnBnClickedOk()
 	
 	GL::Ansi2Utf8(sJson, sJson.c_str());
 
+	mkdir("Config");
 	std::string sFile;
 	GL::WideByte2Ansi(sFile, m_sRuleName.GetString());
 	sFile = "Config/" + sFile + ".json";
 
 	HANDLE hFile;
 	hFile = CreateFileA(sFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-	if (hFile != INVALID_HANDLE_VALUE)
+	if (hFile == INVALID_HANDLE_VALUE)
 	{
-		DWORD writed = 0;
-		WriteFile(hFile, sJson.c_str(), sJson.size(), &writed, NULL);
-		CloseHandle(hFile);
+		AfxMessageBox(_T("保存失败。"));
+		return;
 	}
+
+	DWORD writed = 0;
+	WriteFile(hFile, sJson.c_str(), sJson.size(), &writed, NULL);
+	CloseHandle(hFile);
 	
 	CDialogEx::OnOK();
 }

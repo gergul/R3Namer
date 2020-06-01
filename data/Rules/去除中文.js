@@ -36,7 +36,7 @@ RN.RULES.push(function(filePath, isFile, params)
 			return "";
 	}
 	
-	var newFilePath = RN.GetPath(filePath) + "\\" + newFileName;
+	var newFilePath = RN.GetDir(filePath) + newFileName;
 	
 	return newFilePath;
 });

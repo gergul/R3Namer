@@ -11,6 +11,6 @@ RN.RULES.push(function(filePath, isFile, params)
 	
 	var fileName = RN.GetFileName(filePath);
 	var newFileName = escape(fileName);
-	var newFilePath = RN.GetPath(filePath) + "\\" + newFileName;
+	var newFilePath = RN.GetDir(filePath) + newFileName;
 	return newFilePath;
 });

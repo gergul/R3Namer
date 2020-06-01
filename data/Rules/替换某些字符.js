@@ -39,6 +39,6 @@ RN.RULES.push(function(filePath, isFile, params)
 		fileName = fileName.ReplaceG(params["查找目标"], params["替换为"]);
 	}
 	
-	var newFilePath = RN.GetPath(filePath) + "\\" + fileName;
+	var newFilePath = RN.GetDir(filePath) + fileName;
 	return newFilePath;
 });
